@@ -1,0 +1,42 @@
+﻿@model User
+
+<form method="post" asp-action="Edit"> 
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Edit Category</h2>
+            <hr />
+        </div>
+        @*<div asp-validation-summary="All"></div> uyarıların hepsinin başta çıkması için*@
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span> @*Doğrulama yapmak için *@      
+        </div>       
+        <div class="mb-3">
+            <div>
+                @Html.LabelFor(x => x.Status, new { @class = "text-muted" })
+            </div>
+            <div>
+                @* @Html.DropDownListFor(modelItem => modelItem.Status, (new[] { new SelectListItem { Text = "True", Value = "1" }, new SelectListItem { Text = "False", Value = "0" } }), new { @class = "form-control" } ) *@
+                @* @Html.TextBoxFor(x => x.Status, new { @class = "form-control" }) *@
+                @Html.EditorFor(model => model.Status,new { @class = "form-control" })
+            </div>
+        </div>
+       <div class="mb-3">
+            <label asp-for="Departments"></label>
+            @Html.DropDownListFor(m=>m.Departments.Id,(List<SelectListItem>)ViewBag.Degerler,new {@class="form-control"})
+        </div> 
+        <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+        <a asp-controller="User" asp-action="Index" class="btn btn-outline-secondary" style="width:150px">
+            Back to List
+        </a>
+
+    </div>   
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }    
+}
+

@@ -1,0 +1,36 @@
+﻿@model User
+
+<form method="post" asp-action="DeletePost">
+    <input asp-for="Id" hidden />
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Delete User</h2>
+            <hr />
+        </div>
+        @*<div asp-validation-summary="All"></div> uyarıların hepsinin başta çıkması için*@
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />            
+        </div>
+        <div class="mb-3">
+            <div>
+                @Html.LabelFor(x => x.Status, new { @class = "text-muted" })
+            </div>
+            <div>
+                @Html.TextBoxFor(x => x.Status, new { @class = "form-control" })
+            </div>
+        </div>
+        <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
+        <a asp-controller="User" asp-action="Index" class="btn btn-outline-secondary" style="width:150px">
+            Back to List
+        </a>
+
+    </div>   
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }    
+}
+

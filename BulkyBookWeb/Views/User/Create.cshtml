@@ -1,0 +1,37 @@
+﻿@model User
+@{
+    ViewBag.Title = "Create";
+    
+}
+
+<form method="post" class="form-group"> 
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create User</h2>
+            <hr />
+        </div>
+        @*<div asp-validation-summary="All"></div> uyarıların hepsinin başta çıkması için*@
+        <div class="mb-3">
+            <label>User Name</label>
+            <input type="text" class="form-control" name="Name"/>
+            <span asp-validation-for="Name" class="text-danger"></span> @*Doğrulama yapmak için *@      
+        </div>
+        <div class="mb-3">
+            <label>Department</label>
+          @Html.DropDownListFor(m=>m.Departments.Id,(List<SelectListItem>)ViewBag.Degerler,new {@class="form-control"})
+        </div>      
+
+        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+        <a asp-controller="User" asp-action="Index" class="btn btn-outline-secondary" style="width:150px">
+            Back to List
+        </a>
+
+    </div>   
+</form>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }    
+}
+
